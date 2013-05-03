@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<settings>
+    <!-- site-ul care trebuie accesat (unde este bannerul) -->
+    <webSite>http://badjojo.us/</webSite>
+    
+    <!-- fisierul unde se gaseste lista cu browsere -->
+    <browsers>config/user_agents.xml</browsers>
+    
+    <!-- fisierul unde se gaseste lista cu proxy servers -->
+    <proxyServers>config/proxy_servers.txt</proxyServers>
+    
+    <!-- fisierul unde se gaseste lista cu parametrii de diplay -->
+    <displays>config/display.xml</displays>
+    
+    <!-- cat de des va fi accesat site-ul (exprimat in minute)
+    	De exemplu, daca min = 5 si max = 60 atunci site-ul va fi accesat o data 
+    	la cel putin 5 minute si cel mult 60 minute. Intervalul va fi calculat random 
+    	de catre bot pentru a nu creea suspiciuni accesandu-l la intervale regulate. :) -->
+    <accessInterval>
+        <min>1</min>
+        <max>2</max>
+    </accessInterval>
+    
+</settings>

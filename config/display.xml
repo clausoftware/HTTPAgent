@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<display>
+   <version>
+       <pixels>1024×768</pixels>
+       <windowPixels>900×768</windowPixels>
+       <resolution>96</resolution>
+   </version> 
+   <version>
+       <pixels>1400×1050</pixels>
+       <windowPixels>1300×1050</windowPixels>
+       <resolution>72</resolution>
+   </version>
+   <version>
+       <pixels>1366×768</pixels>
+       <windowPixels>1366×670</windowPixels>
+       <resolution>96</resolution>
+   </version>
+   <version>
+       <pixels>1980×1080></pixels>
+       <windowPixels>800×600</windowPixels>
+       <resolution>72</resolution>
+   </version>
+   <version>
+       <pixels>2048×1536</pixels>
+       <windowPixels>2048×1536</windowPixels>
+       <resolution>92</resolution>
+   </version>
+   <version>
+       <pixels>1024×768</pixels>
+       <windowPixels>1024×700</windowPixels>
+       <resolution>72</resolution>
+   </version>
+    
+</display>
