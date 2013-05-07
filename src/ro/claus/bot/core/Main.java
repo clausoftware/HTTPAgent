@@ -1,12 +1,9 @@
 package ro.claus.bot.core;
 
-import java.io.File;
 import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
@@ -19,8 +16,6 @@ import org.w3c.css.sac.CSSParseException;
 import org.w3c.css.sac.ErrorHandler;
 import org.w3c.dom.NamedNodeMap;
 
-import ro.claus.bot.helpers.MailSender;
-import ro.claus.bot.helpers.Zipper;
 import ro.claus.bot.property.selector.DisplaySelector.Display;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
@@ -40,8 +35,6 @@ public class Main {
 
 	private static Logger log = Logger.getLogger(Main.class);
 	private static Context context;
-	private static Date startDate = new Date();
-	private static Date endDate;
 
 	public static void main(String[] args) {
 		PropertyConfigurator.configure("config/log4j.properties");
@@ -55,9 +48,6 @@ public class Main {
 		String myUrl = context.getUrl();
 
 		connectHTMLUnit(myUrl);
-
-		endDate = new Date();
-		sendEmailReport();
 
 		log.info("Successfully clicked the banner " + context.getSuccessfull() + " times");
 		log.info("--------- THE END --------\n");
@@ -164,9 +154,9 @@ public class Main {
 
 					// sleep before connecting again
 					long sleep = (context.getMin() + (new Random().nextInt(context.getMax() - context.getMin())));
-					log.info("Sleeping for " + sleep + " minutes before continuing...");
+					log.info("Sleeping for " + sleep + " seconds before continuing...");
 					try {
-						Thread.sleep(sleep * 60000);
+						Thread.sleep(sleep * 1000);
 					} catch (InterruptedException e) {}
 
 				} catch (ProgramEndedException ex) {
@@ -251,32 +241,6 @@ public class Main {
 			public void error(String arg0, URL arg1, String arg2, int arg3, int arg4, String arg5) {
 			}
 		});
-	}
-
-	private static void sendEmailReport() {
-		try {
-			StringBuilder msg = new StringBuilder();
-			SimpleDateFormat sdf = new SimpleDateFormat("DD-MMM-YYYY HH:mm:ss");
-			msg.append("Site to visit: " + context.getUrl()).append("\n");
-			msg.append("Start Date: " + sdf.format(startDate)).append("\n");
-			msg.append("End Date: " + sdf.format(endDate)).append("\n");
-			msg.append("Total clicks: " + context.getTotal()).append("\n");
-			msg.append("Successful clicks: " + context.getSuccessfull()).append("\n");
-
-			// zip the logs and save them to C:\\temp\\logs.zip
-			try {
-				Zipper zipper = new Zipper();
-				zipper.zip();
-			} catch (Exception e) {}
-
-			MailSender.send("claussoftware", "electrik", "mclaudiu.23@gmail.com", "HTTPAgent", msg.toString());
-
-			// now delete the zip
-			File file = new File("C:\\temp\\logs.zip");
-			if (file.exists()) {
-				file.delete();
-			}
-		} catch (Exception e) { } 
 	}
 
 }

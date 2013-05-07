@@ -35,6 +35,7 @@ public class ProxyServerSelector {
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(list)));
 			String line = null;
+
 			while ((line = reader.readLine()) != null) {
 				try {
 					String[] addr = line.split(":");
@@ -42,7 +43,7 @@ public class ProxyServerSelector {
 						String ip = addr[0];
 						String port = addr[1];
 						if (ip.trim().length() > 0 && port.trim().length() > 0) {
-							proxyList.add(new InetSocketAddress(ip, Integer.valueOf(port)));
+							proxyList.add(new InetSocketAddress(ip.trim(), Integer.valueOf(port.trim())));
 						}
 					}
 				} catch (Exception e) {
